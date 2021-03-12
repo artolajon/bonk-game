@@ -2,10 +2,12 @@
 
 const hitDog = (event) =>{
   let target = event.target;
-  target.classList.add('bonk');
-  new Audio('./assets/sounds/bonk_sound_effect.ogg').play();
-  setTimeout(()=> document.body.removeChild(target),1000);
-  
+  if (!target.classList.contains('bonk'))
+  {
+    target.classList.add('bonk');
+    new Audio('./assets/sounds/bonk_sound_effect.ogg').play();
+    setTimeout(()=> document.body.removeChild(target),1000);
+  }
 }
 
 const createDogDiv = ()=> {
