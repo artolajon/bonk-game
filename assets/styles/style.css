@@ -1,0 +1,11 @@
+.dog{
+    background-image: url(../images/dog.png);
+    width: 172px;
+    height: 245px;
+    background-size: contain;
+    position: absolute;
+}
+
+.bonk{
+    background-image: url(../images/bonk-dog.png) !important;
+}
