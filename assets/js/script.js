@@ -22,8 +22,8 @@ const createDogDiv = ()=> {
 
 
 const makeNewPosition = () => {
-  var h = $(window).height() - 50;
-  var w = $(window).width() - 50;
+  var h = $(window).height() - 142;
+  var w = $(window).width() - 100;
   
   var nh = Math.floor(Math.random() * h);
   var nw = Math.floor(Math.random() * w);
