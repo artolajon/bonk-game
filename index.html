@@ -9,7 +9,19 @@
         <link rel="stylesheet" href="./assets/styles/style.css">
     </head>
     <body>
-        <button onclick="startGame()">Start Game</button>
+        <div class="centered text-center menu" id="start">
+            <h1>Bonk Game</h1>
+            <p>Send the dogs to the horny jail</p>
+
+            <h2>How to play</h2>
+            <p>Hit all the dogs you can. If the dogs number exceeds 30, you will loose.</p>
+            <button onclick="startGame()"> Start!! </button> 
+        </div>
+        <div class="centered text-center menu hidden" id="end">
+            <h1>Game Over</h1>
+            <p>Score: <span id="score"></span></p>
+            <button onclick="startGame()"> Replay </button> 
+        </div>
 
         <script src="./assets/js/jquery-3.6.0.min.js"></script>
         <script src="./assets/js/script.js"></script>

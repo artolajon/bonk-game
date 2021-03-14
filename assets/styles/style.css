@@ -1,3 +1,19 @@
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.text-center{
+    text-align: center;
+}
+.hidden{
+    display: none;
+}
+.menu{
+    max-width: 300px;
+}
+
 .dog{
     background-image: url(../images/dog.png);
     width: 100px;

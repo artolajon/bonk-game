@@ -69,7 +69,28 @@ const setSmallerSpawnTime = () =>{
   }
 }
 
+const hideElements = (className) => {
+  let elementsCollection = document.getElementsByClassName(className);
+  let array = [...elementsCollection];
+  array.forEach(element => {
+    if (!element.classList.contains('hidden'))
+      element.classList.add('hidden')
+  });
+}
+
+const setScore = (score) => {
+  let element = document.getElementById('score');
+  element.textContent = score;
+}
+
+
+const showEnd = () => {
+  let element = document.getElementById("end");
+  element.classList.remove('hidden')
+}
+
 const startGame = async () =>{
+  hideElements("menu");
 
   spawnTime = SPAWN_TIME_STARTING;
   let startDatetime = new Date();
@@ -83,9 +104,9 @@ const startGame = async () =>{
     await wait(spawnTime);
     setSmallerSpawnTime();    
   }
-
+  hideElements("dog");
   let endDatetime = new Date();
   var playedTime = (endDatetime - startDatetime) / 1000;
-  alert("You loose :)");
-  alert(`${playedTime} seconds`);
+  setScore(playedTime);
+  showEnd();
 }
