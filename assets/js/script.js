@@ -69,14 +69,20 @@ const setSmallerSpawnTime = () =>{
   }
 }
 
-const hideElements = (className) => {
+const hideElements = (className, deleteNode = false) => {
   let elementsCollection = document.getElementsByClassName(className);
   let array = [...elementsCollection];
   array.forEach(element => {
-    if (!element.classList.contains('hidden'))
-      element.classList.add('hidden')
+    if(deleteNode){
+      document.body.removeChild(element);
+    }else{
+      if (!element.classList.contains('hidden'))
+        element.classList.add('hidden')
+    }
+    
   });
 }
+
 
 const setScore = (score) => {
   let element = document.getElementById('score');
@@ -85,8 +91,12 @@ const setScore = (score) => {
 
 
 const showEnd = () => {
-  let element = document.getElementById("end");
-  element.classList.remove('hidden')
+  let endMenu = document.getElementById("end");
+  let replayButton = endMenu.getElementsByTagName("button");
+  replayButton[0].disabled = true;
+
+  endMenu.classList.remove('hidden');
+  setTimeout(() => replayButton[0].disabled = false, 1000);
 }
 
 const startGame = async () =>{
@@ -104,7 +114,7 @@ const startGame = async () =>{
     await wait(spawnTime);
     setSmallerSpawnTime();    
   }
-  hideElements("dog");
+  hideElements("dog", true);
   let endDatetime = new Date();
   var playedTime = (endDatetime - startDatetime) / 1000;
   setScore(playedTime);

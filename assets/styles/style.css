@@ -46,6 +46,9 @@ button:active{
     background-color: gray;
     outline: none;
 }
+button:disabled{
+    background-color: lightgray;
+}
 
 .dog{
     background-image: url(../images/dog.png);
