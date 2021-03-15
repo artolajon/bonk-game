@@ -6,6 +6,10 @@
     font-family: Quicksand;
     src: url(../fonts/Quicksand/Quicksand-VariableFont_wght.ttf);
   }
+
+body{
+    margin: 0;
+}
 *{
     font-family: Quicksand;
 }
@@ -61,4 +65,27 @@ button:disabled{
 .bonk{
     background-image: url(../images/bonk-dog.png) !important;
     z-index: -1;
+}
+
+@keyframes progress-anim {
+    from {width: 0;}
+    to {width: 100%;}
+  }
+  
+
+
+.progress{
+    background-color: black;
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    animation-name: progress-anim;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+#game-status{
+    user-select: none;
 }
