@@ -1,7 +1,7 @@
 
 const SPAWN_TIME_STARTING = 1000;
 const SPAWN_TIME_MIN = 100;
-const ENEMY_LIMIT=30;
+const ENEMY_LIMIT=20;
 
 
 
