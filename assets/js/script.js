@@ -2,13 +2,16 @@
 const SPAWN_TIME_STARTING = 1000;
 const SPAWN_TIME_MIN = 100;
 const ENEMY_LIMIT=20;
-
+const MAP_SIZE ={
+  x: window.innerWidth - 100,
+  y: window.innerHeight - 142
+}
 
 
 let spawnTime;
 let startDatetime;
 let enemyNumber = 0;
-
+let muted=false;
 
 const hitDog = (event) =>{
   let target = event.target;
@@ -16,7 +19,8 @@ const hitDog = (event) =>{
   {
     enemyNumber--;
     target.classList.add('bonk');
-    new Audio('./assets/sounds/bonk_sound_effect.ogg').play();
+    if (!muted)
+      new Audio('./assets/sounds/bonk_sound_effect.ogg').play();
     setTimeout(()=> document.body.removeChild(target),1000);
   }
 }
@@ -26,7 +30,7 @@ const createDogDiv = ()=> {
   div.classList.add('dog');
   div.addEventListener('click', (e) => hitDog(e));
 
-  var newPos = makeNewPosition();
+  let newPos = makeNewPosition();
   div.style.top= newPos.y+'px';
   div.style.left= newPos.x+'px';
 
@@ -35,17 +39,14 @@ const createDogDiv = ()=> {
 
 
 const makeNewPosition = () => {
-  var h = $(window).height() - 142;
-  var w = $(window).width() - 100;
-  
-  var nh = Math.floor(Math.random() * h);
-  var nw = Math.floor(Math.random() * w);
+  let nh = Math.floor(Math.random() * MAP_SIZE.y);
+  let nw = Math.floor(Math.random() * MAP_SIZE.x);
   
   return {y:nh, x:nw};
 }
 
 const animateDiv = (div) => {
-  var newPos = makeNewPosition();
+  let newPos = makeNewPosition();
   $(div).animate({ top: newPos.y, left: newPos.x }, 2000,   function(){
     animateDiv(div);        
   });
@@ -151,7 +152,7 @@ const startGame = async () =>{
   }
   hideElements("dog", true);
   let endDatetime = new Date();
-  var playedTime = (endDatetime - startDatetime) / 1000;
+  let playedTime = (endDatetime - startDatetime) / 1000;
   hideElement("game-status");
   setScore(playedTime);
   diableReplay()

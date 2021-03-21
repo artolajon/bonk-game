@@ -18,6 +18,11 @@
                 <h2>How to play</h2>
                 <p>Hit all the dogs you can. If the number of dogs exceeds 20, you will loose.</p>
             </div>
+            <div>
+                <h2>Options</h2>
+                <input type="checkbox" onclick="muted = !muted" id="soundCheck" checked> 
+                <label for="soundCheck">Sound</label>
+            </div>
             <button onclick="startGame()"> Start </button> 
         </div>
         <div class="centered text-center menu hidden" id="end">
@@ -28,7 +33,6 @@
             <button onclick="startGame()"> Replay </button> 
         </div>
         <div class="hidden text-center" id="game-status">
-            <div class="progress"></div>
             <h2 id="spawn-time"></h2>
         </div>
 
