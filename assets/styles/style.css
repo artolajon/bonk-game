@@ -55,7 +55,9 @@ button:disabled{
 }
 
 .dog{
-    background-image: url(../images/dog.png);
+    background-image: url(../images/spritesheet.png);
+    background-position-x: -100px;
+    background-size: 200% !important;
     width: 100px;
     height: 142px;
     background-size: contain;
@@ -63,7 +65,7 @@ button:disabled{
 }
 
 .bonk{
-    background-image: url(../images/bonk-dog.png) !important;
+    background-position-x: 0 !important;
     z-index: -1;
 }
 
