@@ -21,7 +21,9 @@ const hitDog = (event) =>{
     target.classList.add('bonk');
     if (!muted)
       new Audio('./assets/sounds/bonk_sound_effect.ogg').play();
-    setTimeout(()=> document.body.removeChild(target),1000);
+    setTimeout(()=> {
+      try{document.body.removeChild(target)}catch(ex){}
+    },1000);
   }
 }
 
@@ -75,7 +77,9 @@ const hideElements = (className, deleteNode = false) => {
   let array = [...elementsCollection];
   array.forEach(element => {
     if(deleteNode){
-      document.body.removeChild(element);
+      try{
+        document.body.removeChild(element);
+      }catch(ex){}
     }else{
       if (!element.classList.contains('hidden'))
         element.classList.add('hidden')
