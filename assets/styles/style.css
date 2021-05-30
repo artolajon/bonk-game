@@ -63,6 +63,10 @@ button:disabled{
     background-size: contain;
     position: absolute;
 }
+.header{
+    position: relative;
+    margin: auto;
+}
 
 .bonk{
     background-position-x: 0 !important;
