@@ -138,12 +138,12 @@ const updateCounterText = async () =>{
 
 
 const nextLevel = () => {
-  document.getElementById("spawn-time").textContent = `${spawnTime}ms`;
   setNewSpawnTime();
 
 }
 
 const levelController = () => {
+  document.getElementById("spawn-time").textContent = `${spawnTime}ms`;
   setInterval(()=> {
     nextLevel();
   }, 3000);
