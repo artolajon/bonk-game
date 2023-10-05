@@ -1,6 +1,7 @@
 
-const SPAWN_TIME_STARTING = 1000;
-const SPAWN_TIME_MIN = 100;
+const SPAWN_TIME_MAX = 2000;
+const SPAWN_TIME_MIN = 300;
+const ACCELERATION_PERCENTAGE = 30;
 const ENEMY_LIMIT=20;
 const MAP_SIZE ={
   x: window.innerWidth - 100,
@@ -18,6 +19,7 @@ const hitDog = (event) =>{
   if (!target.classList.contains('bonk'))
   {
     enemyNumber--;
+    updateCounterText();
     target.classList.add('bonk');
     if (!muted)
       new Audio('./assets/sounds/bonk_sound_effect.ogg').play();
@@ -58,6 +60,7 @@ const addADog = () => {
   enemyNumber++;
   let div = createDogDiv();
   document.body.appendChild(div);
+  updateCounterText();
   animateDiv(div);
 }
 
@@ -65,11 +68,22 @@ const wait = async (ms) => {
   await new Promise(resolve => setTimeout(resolve, ms));
 }
 
-const setSmallerSpawnTime = () =>{
-  spawnTime -= spawnTime * 0.1;
+const setNewSpawnTime = () =>{
+  // to get negative or positive
+  const randomNumber = Math.random();
+  const negativeOrPositive = randomNumber < 0.5 ? -1 : 1;
+
+  const acceleration= ACCELERATION_PERCENTAGE * negativeOrPositive;
+  
+  spawnTime = parseInt(spawnTime + spawnTime * (acceleration/100));
   if (spawnTime < SPAWN_TIME_MIN){
     spawnTime = SPAWN_TIME_MIN;
   }
+  if (spawnTime > SPAWN_TIME_MAX){
+    spawnTime = SPAWN_TIME_MAX;
+  }
+  document.getElementById("spawn-time").textContent = `${spawnTime}ms`;
+  
 }
 
 const hideElements = (className, deleteNode = false) => {
@@ -118,30 +132,28 @@ const diableReplay=()=>{
   setTimeout(() => replayButton[0].disabled = false, 1000);
 }
 
-const updateSpawnTimeText = () =>{
-  let perSecond=1000/spawnTime;
-  document.getElementById("spawn-time").textContent = `${perSecond.toFixed(1)}/1s`;
+const updateCounterText = async () =>{
+  document.getElementById("actual-count").textContent = `${enemyNumber}/20`;
 }
 
 
 const nextLevel = () => {
-  updateSpawnTimeText();
-  setSmallerSpawnTime();
+  document.getElementById("spawn-time").textContent = `${spawnTime}ms`;
+  setNewSpawnTime();
 
 }
 
 const levelController = () => {
-  updateSpawnTimeText();
   setInterval(()=> {
     nextLevel();
-  }, 5000);
+  }, 3000);
 }
 
 const startGame = async () =>{
   hideElements("menu");
   
 
-  spawnTime = SPAWN_TIME_STARTING;
+  spawnTime = SPAWN_TIME_MAX;
   let startDatetime = new Date();
   enemyNumber = 0;
   levelController();
