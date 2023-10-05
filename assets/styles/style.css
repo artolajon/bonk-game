@@ -9,9 +9,11 @@
 
 body{
     margin: 0;
+    background-color: #1e1e1e;
 }
-*{
+*:not(button){
     font-family: Quicksand;
+    color: white;
 }
 h1, h2{
     font-family: PressStart2P;
